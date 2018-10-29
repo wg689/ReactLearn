@@ -92,6 +92,7 @@ export  default  class XMGHome extends Component{
            <ListView
                dataSource = {this.state.dataSource}
                renderRow = {this.renderRow}
+               renderHeader = {this.renderHeader}
            />
         );
     }
@@ -103,22 +104,32 @@ export  default  class XMGHome extends Component{
                     <Image source = {{uri:rowData.imgsrc}} style={styles.imageStyle}>
 
                     </Image>
-                    <View>
+                    <View style={styles.rightViewStyle}>
 
                         <Text style={styles.titleStye}>
                             {rowData.title}
                         </Text>
 
                         <Text style={styles.subTitleStye}>
-                            {rowData.title}
+                            {rowData.digest}
                         </Text>
 
                         <Text style={styles.followTitleStye}>
-                            {rowData.title} 跟帖
+                            {rowData.replyCount} 跟帖
                         </Text>
 
                     </View>
                 </View>
+        );
+    }
+
+    renderHeader(){
+        return(
+            <View>
+                <Text>
+                    头部
+                </Text>
+            </View>
         );
     }
 
@@ -127,7 +138,23 @@ export  default  class XMGHome extends Component{
 
 const styles = StyleSheet.create({
     cellViewStyle:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottomColor:'#dddddd',
+        borderBottomWidth: 0.5
 
+    },
+    rightViewStyle:{
+        width: 220,
+        paddingTop: 10,
+        paddingLeft:10,
+        paddingBottom:30,
+        // backgroundCo
+        // lor:'red'
+        // marginLeft: 10,
+        marginBottom: 10,
+        // marginTop: 10,
+        // backgroundColor:'blue'
     },
     imageStyle:{
       width:90,
@@ -135,12 +162,25 @@ const styles = StyleSheet.create({
     }
     ,
     titleStye:{
-
+       fontSize: 16,
+        marginBottom: 3,
     },
     subTitleStye:{
+        fontSize: 13,
+        color:'#888888'
+
 
     },
     followTitleStye:{
+        position: 'absolute',
+        right:10,
+        bottom:0,
+        marginTop:10,
+        borderWidth: 0.5,
+        borderColor:'gray',
+        borderRadius:3,
+        padding: 3,
+        fontSize:12,
 
     },
 
